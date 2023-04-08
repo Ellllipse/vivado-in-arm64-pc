@@ -15,18 +15,12 @@ Third attempt:
 I then try to use cloud computers. But I can’t even install Ubuntu at the first place, because they seem not to allow user configure the Virtual Machine and it comes with a great cost.
 
 
+Fourth attempt:
 
-Fourth attempt: 
-
-# vivado2022.1-docker
-
-**Disclaimer: The script in this repo were gathered from multiple informal resources which may contaminated your own docker image. Use in your own risk.**
+Use docker. 
 
 ---
-I am using `13-inch, 2020, Four Thunderbolt 3 ports MacBook Pro` with `2.3 GHz Quad-Core Intel Core i7` and `16 GB 3733 MHz LPDDR4X`. Currently running `Ventura 13.2.1` OS.
-
-The whole installation will take about 160GB memory and end up with about 90GB. 
-
+I am using `13.6-inch, 2022, MacBook Air` with `Apple M2 chip`. Currently running `Ventura 13.3` OS.
 ---
 
 1. Get the ubuntu docker
@@ -59,11 +53,6 @@ docker run -e DISPLAY=host.docker.internal:0 -it -v /sys/devices:/sys/devices:ro
 5. Install all possible vivado dependencies.
 This can be done in two ways, 1. Give permission to `init_docker.sh` file under this repo or 2. Copy the instruction in `init_docker.sh` and run it line by line.
 
----
-Note: Complete both under university WiFi would take a little while.
-
----
-
 6. Install Vivado from the installer.
 Assume your project directory is `/dev/new_docker_project` and you run the docker within the folder. Put your `Xilinx_Unified_2022.1_0420_0327_Lin64.bin` file under the folder.
 
@@ -90,25 +79,20 @@ sudo apt-get update
 sudo apt-get install libxtst6
 ```
 
-In theory, the installer will pop up an installation window. It will ask you to log-in and choose `Download and install now`
-
-Then choose `Vivado`, `Vivado ML standard` and all tools you need. 
-
-Then agree with licenses.
-
-After confirm your installation configuration, your installation will be begin.
-
----
-Note: Complete both under university WiFi or wired network would took 2 hours to download (around 8MB/s) 1 hour to install and couple minutes to finalize.
-
----
-
 If all installation ran successfully, you should be able to run Vivado with command instructions.
 
 If you installed in default path:
 ```sh
 source /tools/Xilinx/Vivado/2022.1/settings64.sh
 vivado &
+```
+
+To save the docker image:
+
+```sh
+ID=$(docker ps -l -q)
+echo "${ID}"
+sudo docker commit ${ID} ubuntu_basic:latest
 ```
 
 ---
@@ -120,8 +104,4 @@ LD_PRELOAD=/lib/x86_64-linux-gnu/libudev.so.1 vivado [your command]
 ```
 Thats in the same line.
 
-I tried it and it built PYNQ board project successfully.
-
-
-If someone who saw this repo some time after and got errors for whatever issues, I am not able to fix it. Sorry about it. But if someone indeed got it working, let me know.
 

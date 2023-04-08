@@ -19,9 +19,9 @@ Fourth attempt:
 
 Use docker. 
 
----
+--
 I am using `13.6-inch, 2022, MacBook Air` with `Apple M2 chip`. Currently running `Ventura 13.3` OS.
----
+--
 
 1. Get the ubuntu docker
 
@@ -37,11 +37,6 @@ brew install --cask xquartz
 ```
 
 Set “Allow connections from network clients” in XQuartz -> settings... -> security
-
----
-Note: Complete both under university WiFi would not take long.
-
----
 
 4. Run your new ubuntu image using:
 ``` sh
